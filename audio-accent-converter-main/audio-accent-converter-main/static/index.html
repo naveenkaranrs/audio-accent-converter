@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accent Converter – AI-Powered Audio Accent Conversion</title>
+  <meta name="description" content="Upload audio and convert the speaker's accent using AI-powered DSP processing. Supports American, British, Australian, Indian, Irish, and Southern US accents." />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- Floating particles -->
+  <div class="particles" id="particles"></div>
+
+  <div class="app-wrapper">
+    <!-- ─── Header ─── -->
+    <header class="header">
+      <div class="header__badge"><span>🎙️</span> AI Audio Tool</div>
+      <h1 class="header__title">Accent Converter</h1>
+      <p class="header__subtitle">Upload your audio and transform the speaker's accent in seconds using advanced DSP processing.</p>
+    </header>
+
+    <!-- ─── Upload Card ─── -->
+    <section class="card" id="uploadCard">
+      <div class="card__header">
+        <div class="card__icon card__icon--upload">📁</div>
+        <h2 class="card__title">Upload Audio</h2>
+      </div>
+
+      <div class="upload-zone" id="dropZone">
+        <div class="upload-zone__icon">🎵</div>
+        <p class="upload-zone__text">Drag &amp; drop your audio file or <strong>browse</strong></p>
+        <p class="upload-zone__hint">Supports WAV, MP3, OGG, FLAC · Max 50 MB</p>
+      </div>
+      <input type="file" id="audioFileInput" accept="audio/*" />
+
+      <div class="file-info" id="fileInfo">
+        <div class="file-info__icon">🎧</div>
+        <div class="file-info__details">
+          <div class="file-info__name" id="fileName">—</div>
+          <div class="file-info__meta" id="fileMeta">—</div>
+        </div>
+        <button class="file-info__remove" id="removeFile" title="Remove file">✕</button>
+      </div>
+
+      <div class="waveform-container" id="waveOriginal">
+        <div class="waveform-label">Original Waveform</div>
+        <div class="waveform" id="waveformOrig"></div>
+      </div>
+    </section>
+
+    <!-- ─── Accent Selection Card ─── -->
+    <section class="card" id="accentCard">
+      <div class="card__header">
+        <div class="card__icon card__icon--accent">🌐</div>
+        <h2 class="card__title">Choose Target Accent</h2>
+      </div>
+      <div class="accent-grid" id="accentGrid">
+        <p style="color:var(--text-muted)">Loading accents…</p>
+      </div>
+
+      <button class="convert-btn" id="convertBtn" disabled>
+        <span>⚡ Convert Accent</span>
+      </button>
+    </section>
+
+    <!-- ─── Loader ─── -->
+    <div class="loader" id="loader">
+      <div class="loader__spinner"></div>
+      <div class="loader__text">Processing your audio…</div>
+      <div class="loader__progress"><div class="loader__progress-bar"></div></div>
+    </div>
+
+    <!-- ─── Result Card ─── -->
+    <section class="card result-section" id="resultSection">
+      <div class="card__header">
+        <div class="card__icon card__icon--result">✨</div>
+        <h2 class="card__title">Conversion Result — <span id="accentLabel" style="color:var(--accent)"></span></h2>
+      </div>
+
+      <div class="result-comparison">
+        <div class="result-pane">
+          <div class="result-pane__label">Original</div>
+          <audio controls id="origPlayer" class="result-pane__player"></audio>
+        </div>
+        <div class="result-pane">
+          <div class="result-pane__label">Converted</div>
+          <audio controls id="convPlayer" class="result-pane__player"></audio>
+          <div class="waveform" id="waveformConv" style="height:50px; margin-top:8px;"></div>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <div class="format-group">
+          <label for="formatSelect" class="format-label">Format</label>
+          <select id="formatSelect" class="format-select">
+            <option value="mp3" selected>MP3</option>
+            <option value="wav">WAV</option>
+            <option value="ogg">OGG</option>
+          </select>
+        </div>
+        <button class="btn-download" id="downloadBtn">⬇ Download</button>
+        <button class="btn-new" id="newBtn">🔄 New Conversion</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Built with Python, Pydub &amp; ❤️ · Accent Converter
+    </footer>
+  </div>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>
