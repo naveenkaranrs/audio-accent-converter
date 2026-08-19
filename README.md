@@ -32,7 +32,7 @@ accent-converter/
 
 2. **Installation**:
    ```bash
-   git clone https://github.com/harishkumaran2005/audio-accent-converter.git
+   git clone https://github.com/naveenkaran2005/audio-accent-converter.git
    cd audio-accent-converter
    pip install -r requirements.txt
    ```
